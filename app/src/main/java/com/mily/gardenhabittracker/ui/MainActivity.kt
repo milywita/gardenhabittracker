@@ -1,4 +1,4 @@
-package com.mily.gardenhabittracker
+package com.mily.gardenhabittracker.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
