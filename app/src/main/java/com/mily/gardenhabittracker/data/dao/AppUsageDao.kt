@@ -56,7 +56,6 @@ interface AppUsageDao {
     suspend fun disableTracking(packageName: String, habitId: Long)
 }
 
-
 data class TrackedApps(
     val packageName: String,
     val habitId: Long
