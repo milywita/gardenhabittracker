@@ -27,6 +27,10 @@ espressoCore = "3.6.1"
 # Plugins
 agp = "8.9.0"
 kotlin = "2.0.0"
+workRuntime = "2.10.0"
+workRuntimeKtx = "2.10.0"
+
+
 
 [libraries]
 # Core Android libraries
@@ -57,12 +61,16 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 # Kotlin Coroutines
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

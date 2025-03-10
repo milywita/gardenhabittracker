@@ -21,22 +21,22 @@ interface AppUsageDao {
 
     // Get app usage for specific date, package name, and habit
     @Query("SELECT * FROM app_usage WHERE usageDate = :date AND packageName = :packageName AND habitId = :habitId")
-    suspend fun getAppUsageForDate(habitId: Long, packageName: String, date: Date)
+    suspend fun getAppUsageForDate(habitId: Long, packageName: String, date: Date): AppUsage?
 
     // Get total usage time from specific app on specific day
-    @Query("SELECT SUM(usageDurationMinutes) FROM app_usage WHERE packageName = :packageName AND usageDate =:date")
+    @Query("SELECT SUM(usageDurationMinutes) FROM app_usage WHERE packageName = :packageName AND usageDate = :date")
     suspend fun getTotalUsageForDate(packageName: String, date: Date): Int?
 
     // Get all usage history for specific habit
     @Query("SELECT * FROM app_usage WHERE habitId = :habitId ORDER BY usageDate DESC")
     fun getUsageHistoryForHabit(habitId: Long): Flow<List<AppUsage>>
 
-    // Get usage data withing a date range
-    @Query("SELECT * FROM app_usage WHERE usageDate BETWEEN :startDate AND :endDate AND habitId= :habitId")
+    // Get usage data within a date range
+    @Query("SELECT * FROM app_usage WHERE usageDate BETWEEN :startDate AND :endDate AND habitId = :habitId")
     fun getUsageInDateRange(habitId: Long, startDate: Date, endDate: Date): Flow<List<AppUsage>>
 
-    // Calculate average use withing a date range
-    @Query("SELECT AVG (usageDurationMinutes) FROM app_usage WHERE habitId = :habitId AND usageDate BETWEEN :startDate AND :endDate")
+    // Calculate average use within a date range
+    @Query("SELECT AVG(usageDurationMinutes) FROM app_usage WHERE habitId = :habitId AND usageDate BETWEEN :startDate AND :endDate")
     suspend fun getAverageUsageInDateRange(habitId: Long, startDate: Date, endDate: Date): Float?
 
     // Find the most recent date when user was within limits
