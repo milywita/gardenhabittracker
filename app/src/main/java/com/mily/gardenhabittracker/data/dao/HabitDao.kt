@@ -1,6 +1,7 @@
 package com.mily.gardenhabittracker.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -20,6 +21,7 @@ interface HabitDao {
     suspend fun updateHabit(habit: Habit)
 
     // Delete habit from the database
+    @Delete
     suspend fun deleteHabit(habit: Habit)
 
     // Get habit by its ID
@@ -37,6 +39,4 @@ interface HabitDao {
     // Get habits created on ar after a specific date
     @Query("SELECT * FROM habits WHERE createDate >= :date")
     fun getHabitsCreatedSince(date: Date): Flow<List<Habit>>
-
-
 }

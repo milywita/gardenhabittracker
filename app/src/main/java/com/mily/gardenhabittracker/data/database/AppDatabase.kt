@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.mily.gardenhabittracker.data.dao.AppUsageDao
 import com.mily.gardenhabittracker.data.dao.GardenDao
+import com.mily.gardenhabittracker.data.dao.HabitCompletionDao
 import com.mily.gardenhabittracker.data.dao.HabitDao
 import com.mily.gardenhabittracker.data.dao.TreeDao
 import com.mily.gardenhabittracker.data.entity.AppUsage
@@ -34,7 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
 
     // Get the DAO for HabitCompletions
-    abstract fun habitCompletionDao(): HabitCompletion
+    abstract fun habitCompletionDao(): HabitCompletionDao
 
     // Get the DAO for Garden
     abstract fun gardenDao(): GardenDao
@@ -43,7 +45,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun treeDao(): TreeDao
 
     // Get the DAO for AppUsage
-    abstract fun appUsageDao(): AppUsage
+    abstract fun appUsageDao(): AppUsageDao
 
     companion object {
         // Singleton instance of the database

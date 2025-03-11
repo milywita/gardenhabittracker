@@ -1,5 +1,6 @@
 package com.mily.gardenhabittracker.data.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -8,14 +9,15 @@ import kotlinx.coroutines.flow.Flow
 import java.util.Date
 
 // Provides methods to interact with the habit_Completion table in the database
+@Dao
 interface HabitCompletionDao {
     // Insert new habit completion into the database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCompletion(completionDao: HabitCompletion)
+    suspend fun insertCompletion(completion: HabitCompletion)
 
     // Get all completion for a specific habit
     @Query("SELECT * FROM habit_completions WHERE habitId = :habitId ORDER BY date DESC")
-    fun getCompletionsForHabits(habitId: Long): Flow<List<HabitCompletion>>
+    fun getCompletionsForHabit(habitId: Long): Flow<List<HabitCompletion>>
 
     // Get completion for a specific habit in a date range
     @Query("SELECT * FROM habit_completions WHERE habitId = :habitId AND date BETWEEN :startDate AND :endDate ORDER BY date")
@@ -23,7 +25,7 @@ interface HabitCompletionDao {
 
     // Get all completion for all habits on a specific date
     @Query("SELECT * FROM habit_completions WHERE date = :date")
-    fun getCompletionOnDate(date: Date): Flow<List<HabitCompletion>>
+    fun getCompletionsOnDate(date: Date): Flow<List<HabitCompletion>>
 
     // Check if a habit has been completed on a specific date
     @Query("SELECT * FROM habit_completions WHERE habitId = :habitId AND date = :date")
